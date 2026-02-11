@@ -1,0 +1,5 @@
+{
+  "name": "Vocation Seeker - 天職探尋器",
+  "description": "An AI-powered career orientation tool based on the Gallup StrengthsFinder model. Analyze your personal achievement stories to discover your natural talents and ideal career path.",
+  "requestFramePermissions": []
+}
