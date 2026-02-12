@@ -20,11 +20,6 @@ const SkillNode: React.FC<Props> = ({ name, skill, x, y, onClick, isSelected }) 
   const isActive = level > 0;
   
   // Atomic visual logic - Improved scaling
-  // Use Math.min to cap the size, and sqrt to dampen the growth of high scores (e.g. 700% -> score 7)
-  // Base 36px, max ~90px.
-  // Example: Score 1.0 (100%) -> 36 + 18 = 54px
-  // Example: Score 5.0 (500%) -> 36 + 40 = 76px
-  // Example: Score 10.0 (1000%) -> 36 + 56 = 92px
   const nodeSize = isActive 
     ? Math.min(90, 36 + (Math.sqrt(score) * 18)) 
     : 32; 
@@ -48,8 +43,8 @@ const SkillNode: React.FC<Props> = ({ name, skill, x, y, onClick, isSelected }) 
       className="absolute flex flex-col items-center justify-center z-20 cursor-pointer"
       style={{ left: x, top: y, marginLeft: -nodeSize / 2, marginTop: -nodeSize / 2 }}
       initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ delay: 0.1 }}
+      animate={{ scale: 1, x: 0, y: 0 }}
+      transition={{ type: 'spring', damping: 20, stiffness: 100 }}
       onClick={onClick}
     >
       {/* Node Core */}
